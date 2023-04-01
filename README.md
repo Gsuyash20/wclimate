@@ -19,15 +19,13 @@ The application overall contains 3 screens i.e.
 5. Font Awesome Flutter
 6. Sliding up panel
 
+### Api used
+OpenWeatherMap
+
 #### ScreenShots
-![Screenshot_2023-04-02-00-55-43-33_3049b2aae269be7d36a6ed09f211b959](https://user-images.githubusercontent.com/78982011/229311194-65133a09-d16c-4061-8877-ea23d182e660.jpg)
-![Screenshot_2023-04-01-19-36-33-13_3049b2aae269be7d36a6ed09f211b959](https://user-images.githubusercontent.com/78982011/229311213-b48199c0-1437-43e5-883f-70a96d25d15d.jpg)
 
-![Screenshot_2023-04-01-19-39-44-13_3049b2aae269be7d36a6ed09f211b959](https://user-images.githubusercontent.com/78982011/229311219-34d158d4-033a-4c09-8009-6f42542614b3.jpg)
+<img src="https://user-images.githubusercontent.com/78982011/229311194-65133a09-d16c-4061-8877-ea23d182e660.jpg" width= "300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src ="https://user-images.githubusercontent.com/78982011/229311213-b48199c0-1437-43e5-883f-70a96d25d15d.jpg" width = "300">
 
-![Screenshot_2023-04-01-19-47-24-02_3049b2aae269be7d36a6ed09f211b959](https://user-images.githubusercontent.com/78982011/229311229-bdabea43-4b51-4366-9c62-4fe1880d0911.jpg)
+<img src = "https://user-images.githubusercontent.com/78982011/229311219-34d158d4-033a-4c09-8009-6f42542614b3.jpg" width = "300"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src = "https://user-images.githubusercontent.com/78982011/229311229-bdabea43-4b51-4366-9c62-4fe1880d0911.jpg" width = "300">
 
-![Screenshot_2023-04-01-19-47-00-01_3049b2aae269be7d36a6ed09f211b959](https://user-images.githubusercontent.com/78982011/229311237-bee9cf52-a956-4e06-9557-87542e071c76.jpg)
-
-![Screenshot_2023-04-01-19-47-04-05_3049b2aae269be7d36a6ed09f211b959](https://user-images.githubusercontent.com/78982011/229311249-786dd582-c252-4e9e-9813-a82e0070fbd2.jpg)
-
+<img src = "https://user-images.githubusercontent.com/78982011/229311237-bee9cf52-a956-4e06-9557-87542e071c76.jpg" width = "300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src = "https://user-images.githubusercontent.com/78982011/229311249-786dd582-c252-4e9e-9813-a82e0070fbd2.jpg" width = "300">

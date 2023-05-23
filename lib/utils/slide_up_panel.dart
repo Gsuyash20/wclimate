@@ -4,7 +4,15 @@ import 'package:wclimate/screens/location_screen.dart';
 
 class PanelWidget extends StatefulWidget {
   final ScrollController controller;
-  const PanelWidget({Key? key, required this.controller}) : super(key: key);
+  final dynamic humidity;
+  final dynamic feelTemp;
+  final dynamic speed;
+  final dynamic weatherDescription;
+  final dynamic visibility;
+  final dynamic pressure;
+  const PanelWidget({Key? key, required this.controller, this.humidity,
+    this.feelTemp, this.speed, this.weatherDescription,
+    this.visibility, this.pressure}) : super(key: key);
 
   @override
   State<PanelWidget> createState() => PanelWidgetState();
@@ -37,7 +45,7 @@ class PanelWidgetState extends State<PanelWidget> {
                     height: 28,
                   ),
                   Text(
-                    '26°C',
+                    '${widget.feelTemp}°C',
                     style: TextStyle(color: Colors.grey[100], fontSize: 40),
                   ),
                 ],
@@ -61,7 +69,7 @@ class PanelWidgetState extends State<PanelWidget> {
                   height: 28,
                 ),
                 Text(
-                  '36%',
+                  '${widget.humidity}%',
                   style: TextStyle(color: Colors.grey[100], fontSize: 40),
                 ),
               ],
@@ -86,7 +94,7 @@ class PanelWidgetState extends State<PanelWidget> {
                   height: 28,
                 ),
                 Text(
-                  '4 Km/h',
+                  '${widget.speed}Km/h',
                   style: TextStyle(color: Colors.grey[100], fontSize: 38),
                 ),
               ],
@@ -111,8 +119,9 @@ class PanelWidgetState extends State<PanelWidget> {
                   height: 28,
                 ),
                 Text(
-                  'Clear sky',
-                  style: TextStyle(color: Colors.grey[100], fontSize: 34),
+                  '${widget.weatherDescription}',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.grey[100], fontSize: 32),
                 ),
               ],
             ),
@@ -136,7 +145,7 @@ class PanelWidgetState extends State<PanelWidget> {
                   height: 28,
                 ),
                 Text(
-                  '10 km',
+                  '${widget.visibility}km',
                   style: TextStyle(color: Colors.grey[100], fontSize: 40),
                 ),
               ],
@@ -161,7 +170,7 @@ class PanelWidgetState extends State<PanelWidget> {
                   height: 28,
                 ),
                 Text(
-                  '1008 hPa',
+                  '${widget.pressure} hPa',
                   style: TextStyle(color: Colors.grey[100], fontSize: 34),
                 ),
               ],

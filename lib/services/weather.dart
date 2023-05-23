@@ -1,7 +1,7 @@
 import 'networking.dart';
 import 'package:wclimate/services/location.dart';
 
-const String apikey = '*****************';
+const String apikey = '';
 const String weatherApiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 
 class WeatherModel {

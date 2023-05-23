@@ -23,6 +23,7 @@ dependencies:
   font_awesome_flutter: ^10.4.0
   provider: ^6.0.5
   sliding_up_panel: ^2.0.0+1
+  double_back_to_close_app: ^2.1.0
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,4 @@
-# Wclimate
+# Weatherly
 
 A Flutter project.
 

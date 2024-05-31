@@ -99,28 +99,30 @@ class LocationScreenState extends State<LocationScreen> {
     final panelHeightOpen = MediaQuery.of(context).size.height * 0.8;
     return Scaffold(
         body: WillPopScope(
-          onWillPop: () async{
-            final now = DateTime.now();
-            const maxDuration = Duration(seconds: 2);
-            final isWarning = lastPressed == null || now.difference(lastPressed!) > maxDuration;
-            if(isWarning){
-              lastPressed = DateTime.now();
-               const snackBar = SnackBar(
-                content: Text('Tap back again to leave'),
-                 duration: maxDuration,
-              );
-               ScaffoldMessenger.of(context)..removeCurrentSnackBar()..showSnackBar(snackBar);
-               return false;
-            }
-            else {
-              if(Platform.isAndroid){
-                SystemNavigator.pop();
-              }
-              return true;
-            }
-          },
-          child: SlidingUpPanel(
-      collapsed: Column(children: [
+      onWillPop: () async {
+        final now = DateTime.now();
+        const maxDuration = Duration(seconds: 2);
+        final isWarning =
+            lastPressed == null || now.difference(lastPressed!) > maxDuration;
+        if (isWarning) {
+          lastPressed = DateTime.now();
+          const snackBar = SnackBar(
+            content: Text('Tap back again to leave'),
+            duration: maxDuration,
+          );
+          ScaffoldMessenger.of(context)
+            ..removeCurrentSnackBar()
+            ..showSnackBar(snackBar);
+          return false;
+        } else {
+          if (Platform.isAndroid) {
+            SystemNavigator.pop();
+          }
+          return true;
+        }
+      },
+      child: SlidingUpPanel(
+        collapsed: Column(children: [
           const SizedBox(
             height: 10,
           ),
@@ -139,14 +141,14 @@ class LocationScreenState extends State<LocationScreen> {
             'Weather Details',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
-      ]),
-      borderRadius: const BorderRadius.vertical(
+        ]),
+        borderRadius: const BorderRadius.vertical(
           top: Radius.circular(24),
-      ),
-      color: Colors.transparent.withOpacity(0.4),
-      minHeight: panelHeightClosed,
-      maxHeight: panelHeightOpen,
-      body: Container(
+        ),
+        color: Colors.transparent.withOpacity(0.4),
+        minHeight: panelHeightClosed,
+        maxHeight: panelHeightOpen,
+        body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
               image: isDay
@@ -189,7 +191,8 @@ class LocationScreenState extends State<LocationScreen> {
                           ),
                         );
                         if (typedName != null) {
-                          var cityData = await weather.getCityWeather(typedName);
+                          var cityData =
+                              await weather.getCityWeather(typedName);
                           updateUI(cityData);
                           checkDayOrNight(cityData);
                         }
@@ -233,8 +236,8 @@ class LocationScreenState extends State<LocationScreen> {
               ],
             ),
           ),
-      ),
-      panelBuilder: (controller) => PanelWidget(
+        ),
+        panelBuilder: (controller) => PanelWidget(
           controller: controller,
           humidity: humidity,
           feelTemp: feelTemp,
@@ -242,8 +245,8 @@ class LocationScreenState extends State<LocationScreen> {
           weatherDescription: weatherDescription,
           visibility: visibility,
           pressure: pressure,
+        ),
       ),
-    ),
-        ));
+    ));
   }
 }

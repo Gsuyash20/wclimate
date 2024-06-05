@@ -1,11 +1,12 @@
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:wclimate/screens/location_screen.dart';
-import 'package:wclimate/services/location.dart';
 import 'package:flutter/material.dart';
-import 'package:wclimate/services/networking.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:geolocator/geolocator.dart';
+import '../services/location.dart';
+import '../services/networking.dart';
+import '../services/weather.dart';
+import 'location_screen.dart';
 
-const String apikey = 'f441732799898e50615865285aa7ce22';
-const String weatherApiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
 
@@ -14,33 +15,88 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class LoadingScreenState extends State<LoadingScreen> {
-
-  Future<void> getLocation() async {
-    // bool isLocationServiceEnabled  = await Geolocator.isLocationServiceEnabled();
-    // if(!isLocationServiceEnabled){
-    //   await Geolocator.openLocationSettings();
-    // }
-    Location location = Location();
-    await location.getCurrentLocation();
-    NetworkHelper networkHelper = NetworkHelper(
-        '$weatherApiUrl?lat=${location.latitude}&'
-        'lon=${location.longitude}&appid=$apikey&units=metric');
-    var weatherData = await networkHelper.getData();
-    if (!mounted) return;
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) {
-          return LocationScreen(locationWeather: weatherData,);
-        },
-      ),
-    );
-  }
+  bool _hasNavigated = false;
 
   @override
   void initState() {
-    getLocation();
     super.initState();
+    getLocationData();
+  }
+
+  Future<void> getLocationData() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Test if location services are enabled.
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      _showAlertDialog(
+        title: 'Location Services Disabled',
+        content: 'Location services are disabled. Please enable them in settings.',
+      );
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        _showAlertDialog(
+          title: 'Location Permission Denied',
+          content: 'Location permissions are denied. Please grant permissions to use the app.',
+          onRetry: getLocationData,
+        );
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    Location location = Location();
+    await location.getCurrentLocation();
+
+    NetworkHelper networkHelper = NetworkHelper(
+        '$weatherApiUrl?lat=${location.latitude}&lon=${location.longitude}&appid=$apikey&units=metric');
+    var weatherData = await networkHelper.getData();
+
+    if (!mounted) return;
+    if (!_hasNavigated) {
+      _hasNavigated = true;
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return LocationScreen(locationWeather: weatherData);
+          },
+        ),
+      );
+    }
+  }
+
+  void _showAlertDialog({required String title, required String content, VoidCallback? onRetry}) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(content),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                SystemNavigator.pop();
+              },
+            ),
+            if (onRetry != null)
+              TextButton(
+                child: const Text('Retry'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  onRetry();
+                },
+              ),
+          ],
+        );
+      },
+    );
   }
 
   @override

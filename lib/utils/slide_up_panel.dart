@@ -10,15 +10,26 @@ class PanelWidget extends StatefulWidget {
   final dynamic weatherDescription;
   final dynamic visibility;
   final dynamic pressure;
-  const PanelWidget({Key? key, required this.controller, this.humidity,
-    this.feelTemp, this.speed, this.weatherDescription,
-    this.visibility, this.pressure}) : super(key: key);
+  const PanelWidget(
+      {super.key,
+      required this.controller,
+      this.humidity,
+      this.feelTemp,
+      this.speed,
+      this.weatherDescription,
+      this.visibility,
+      this.pressure});
 
   @override
   State<PanelWidget> createState() => PanelWidgetState();
 }
+
 class PanelWidgetState extends State<PanelWidget> {
   LocationScreen locationScreen = const LocationScreen();
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +67,7 @@ class PanelWidgetState extends State<PanelWidget> {
           child: FrostedGlass(
             width: 50,
             height: 50,
-            child:  Column(
+            child: Column(
               children: [
                 const SizedBox(
                   height: 18,
@@ -81,7 +92,7 @@ class PanelWidgetState extends State<PanelWidget> {
           child: FrostedGlass(
             width: 50,
             height: 50,
-            child:  Column(
+            child: Column(
               children: [
                 const SizedBox(
                   height: 18,
@@ -106,7 +117,7 @@ class PanelWidgetState extends State<PanelWidget> {
           child: FrostedGlass(
             width: 50,
             height: 50,
-            child:  Column(
+            child: Column(
               children: [
                 const SizedBox(
                   height: 18,
@@ -132,7 +143,7 @@ class PanelWidgetState extends State<PanelWidget> {
           child: FrostedGlass(
             width: 50,
             height: 50,
-            child:  Column(
+            child: Column(
               children: [
                 const SizedBox(
                   height: 18,
@@ -157,7 +168,7 @@ class PanelWidgetState extends State<PanelWidget> {
           child: FrostedGlass(
             width: 50,
             height: 50,
-            child:  Column(
+            child: Column(
               children: [
                 const SizedBox(
                   height: 18,

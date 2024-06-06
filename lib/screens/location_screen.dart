@@ -131,7 +131,7 @@ class LocationScreenState extends State<LocationScreen> {
                   color: Colors.grey[300],
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 9),
               const Text(
                 'Weather Details',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
